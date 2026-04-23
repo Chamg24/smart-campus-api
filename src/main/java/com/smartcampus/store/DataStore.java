@@ -19,30 +19,8 @@ public class DataStore {
     private final Map<String, List<SensorReading>> readings = new ConcurrentHashMap<>();
 
     private DataStore() {
-        // Seed rooms
-        Room r1 = new Room("LIB-301", "Library Quiet Study", 40);
-        Room r2 = new Room("LAB-102", "Computer Science Lab", 30);
-        rooms.put(r1.getId(), r1);
-        rooms.put(r2.getId(), r2);
-
-        // Seed sensors
-        Sensor s1 = new Sensor("TEMP-001", "Temperature", "ACTIVE",    21.5, "LIB-301");
-        Sensor s2 = new Sensor("CO2-001",  "CO2",         "ACTIVE",   420.0, "LAB-102");
-        Sensor s3 = new Sensor("OCC-001",  "Occupancy",   "MAINTENANCE", 0.0, "LIB-301");
-        sensors.put(s1.getId(), s1);
-        sensors.put(s2.getId(), s2);
-        sensors.put(s3.getId(), s3);
-
-        // Link sensors to rooms
-        r1.getSensorIds().add("TEMP-001");
-        r1.getSensorIds().add("OCC-001");
-        r2.getSensorIds().add("CO2-001");
-
-        // Seed readings
-        readings.put("TEMP-001", new ArrayList<>());
-        readings.get("TEMP-001").add(new SensorReading(21.5));
-        readings.put("CO2-001",  new ArrayList<>());
-        readings.put("OCC-001",  new ArrayList<>());
+       
+        
     }
 
     public Map<String, Room>    getRooms()              { return rooms; }
