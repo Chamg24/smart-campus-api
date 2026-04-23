@@ -68,4 +68,19 @@ public class RoomResource {
         store.removeRoom(roomId);
         return Response.noContent().build();
     }
+    
+    @PUT
+@Path("/{roomId}")
+public Response updateRoom(@PathParam("roomId") String roomId, Room updatedRoom) {
+    Room existing = store.getRoom(roomId);
+    if (existing == null) {
+        return Response.status(Response.Status.NOT_FOUND)
+                .entity(Map.of("error", "Room '" + roomId + "' not found"))
+                .build();
+    }
+    if (updatedRoom.getName() != null) existing.setName(updatedRoom.getName());
+    if (updatedRoom.getCapacity() != 0) existing.setCapacity(updatedRoom.getCapacity());
+    return Response.ok(existing).build();
+}
+
 }
